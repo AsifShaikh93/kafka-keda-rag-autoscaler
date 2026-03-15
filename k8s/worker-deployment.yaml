@@ -17,6 +17,8 @@ spec:
       - name: worker
         image: asif1993/kafka-rag-worker:v1
         env:
+        - name: KAFKA_BOOTSTRAP
+          value: "kafka.ai-agent-ns.svc.cluster.local:9092"
         - name: GROQ_API_KEY
           valueFrom:
             secretKeyRef:

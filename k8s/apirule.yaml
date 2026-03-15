@@ -1,0 +1,16 @@
+apiVersion: gateway.kyma-project.io/v2
+kind: APIRule
+metadata:
+  name: rag-api-access
+  namespace: ai-agent-ns
+spec:
+  hosts:
+    - rag-api.c-321a6c0.stage.kyma.ondemand.com
+  service:
+    name: rag-api
+    port: 80
+  gateway: kyma-system/kyma-gateway
+  rules:
+  - path: /query
+    methods: ["POST"]
+    noAuth: true

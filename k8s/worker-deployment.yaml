@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-worker
+  namespace: ai-agent-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rag-worker
+  template:
+    metadata:
+      labels:
+        app: rag-worker
+    spec:
+      containers:
+      - name: worker
+        image: YOUR_DOCKERHUB/rag-worker
+        env:
+        - name: GROQ_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: all-secrets-here
+              key: GROQ_API_KEY

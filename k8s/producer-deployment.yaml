@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-api
+  namespace: ai-agent-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rag-api
+  template:
+    metadata:
+      labels:
+        app: rag-api
+    spec:
+      containers:
+      - name: api
+        image: YOUR_DOCKERHUB/rag-api
+        ports:
+        - containerPort: 8000
+        env:
+        - name: KAFKA_BOOTSTRAP
+          value: kafka:9092
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rag-api
+  namespace: ai-agent-ns
+spec:
+  selector:
+    app: rag-api
+  ports:
+  - port: 80
+    targetPort: 8000

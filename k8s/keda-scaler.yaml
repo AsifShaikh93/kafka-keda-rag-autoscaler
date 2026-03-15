@@ -1,0 +1,17 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: rag-worker-scaler
+  namespace: ai-agent-ns
+spec:
+  scaleTargetRef:
+    name: rag-worker
+  minReplicaCount: 1
+  maxReplicaCount: 10
+  triggers:
+  - type: kafka
+    metadata:
+      bootstrapServers: kafka:9092
+      topic: rag-requests
+      consumerGroup: rag-workers
+      lagThreshold: "5"

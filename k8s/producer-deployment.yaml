@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: YOUR_DOCKERHUB/rag-api
+        image: asif1993/kafka-rag-producer:v1
         ports:
         - containerPort: 8000
         env:

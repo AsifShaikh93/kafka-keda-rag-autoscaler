@@ -11,7 +11,9 @@ spec:
   triggers:
   - type: kafka
     metadata:
-      bootstrapServers: kafka:9092
-      topic: rag-requests
+      bootstrapServers: kafka.ai-agent-ns.svc.cluster.local:9092
       consumerGroup: rag-workers
-      lagThreshold: "5"
+      topic: rag-requests
+      lagThreshold: '5'
+      activationLagThreshold: '3'
+      offsetResetPolicy: latest

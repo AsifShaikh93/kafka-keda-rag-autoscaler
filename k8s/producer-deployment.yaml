@@ -20,7 +20,7 @@ spec:
         - containerPort: 8000
         env:
         - name: KAFKA_BOOTSTRAP
-          value: kafka:9092
+          value: kafka.ai-agent-ns.svc.cluster.local:9092
 
 ---
 
